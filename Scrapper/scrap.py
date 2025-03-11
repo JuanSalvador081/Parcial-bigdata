@@ -4,7 +4,7 @@ import datetime
 import time
 
 # Configuración
-S3_BUCKET = "landing-casas-juan-salvador" 
+S3_BUCKET = "landing-casas-juan-salvador"
 BASE_URL = "https://casas.mitula.com.co/find"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
@@ -15,14 +15,15 @@ PARAMS = {
     "operationType": "sell",
     "propertyType": "mitula_studio_apartment",
     "geoId": "mitula-CO-poblacion-0000014156",
-    "text": "Bogotá, (Cundinamarca)"
+    "text": "Bogotá, (Cundinamarca)",
 }
 
 s3 = boto3.client("s3")
 
+
 def scrape_and_upload(event, context):
     print("🚀 Lambda Function Iniciada")
-    
+
     today = datetime.datetime.today().strftime("%Y-%m-%d")
     combined_html = ""  # Variable para acumular el contenido de las 10 páginas
 
@@ -39,8 +40,12 @@ def scrape_and_upload(event, context):
                 combined_html += f"\n<!-- Página {page} -->\n" + response.text
                 print(f"✅ Página {page} procesada correctamente")
             else:
-                print(f"⚠️ Error descargando página {page} - Código {response.status_code}")
-                print("📜 Respuesta del servidor:", response.text[:500])  # Muestra los primeros 500 caracteres
+                print(
+                    f"⚠️ Error descargando página {page} - Código {response.status_code}"
+                )
+                print(
+                    "📜 Respuesta del servidor:", response.text[:500]
+                )  # Muestra los primeros 500 caracteres
 
         except requests.exceptions.RequestException as e:
             print(f"❌ Excepción al hacer la solicitud: {str(e)}")
