@@ -1,6 +1,5 @@
 import boto3
 import csv
-import datetime
 from bs4 import BeautifulSoup
 import io
 
