@@ -1,0 +1,32 @@
+{
+    "dev": {
+        "app_function": "process.process_html",
+        "aws_region": "us-east-1",
+        "exclude": [
+            "boto3",
+            "dateutil",
+            "botocore",
+            "s3transfer",
+            "concurrent"
+        ],
+        "profile_name": "default",
+        "project_name": "parser",
+        "runtime": "python3.10",
+        "s3_bucket": "zappa-vws52tb6p",
+        "keep_warm": false,
+        "apigateway_enabled": false,
+        "manage_roles": false,
+        "role_name": "LabRole",
+        "events":[
+            {
+                "function": "process.process_html",
+                "event_source": {
+                    "arn": "arn:aws:s3:::landing-casas-juan-salvador",
+                    "events":[
+                        "s3:ObjectCreated:*"
+                    ]
+                }
+            }
+        ]
+    }
+}
