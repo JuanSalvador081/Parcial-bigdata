@@ -49,7 +49,7 @@ jobs:
       - name: Instalar Zappa y dependencias
         run: pip install zappa boto3
       - name: Desplegar Lambda de Scraping
-        run: zappa update dev --zappa-settings-file Scrapper/zappa_settings.json
+        run: zappa update dev --settings_file Scrapper/zappa_settings.json
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
