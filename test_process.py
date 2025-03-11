@@ -1,6 +1,5 @@
 # tests/test_process.py
 import pytest
-from unittest.mock import MagicMock
 import io
 import csv
 
